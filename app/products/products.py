@@ -1,9 +1,7 @@
 import os
 
-from flask import request
-from flask import jsonify
+from flask import make_response, request, jsonify
 from flask.blueprints import Blueprint
-from flask import make_response
 
 from app.models import Product
 

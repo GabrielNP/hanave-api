@@ -7,6 +7,7 @@ from flask.helpers import make_response
 
 from app.api.api import api_bp
 from app.products.products import product_bp
+from app.users.users import user_bp
 from app.utils.db import db
 
 load_dotenv()
@@ -18,6 +19,7 @@ app.logger.setLevel(logging.INFO)
 db.init_app(app)
 
 app.register_blueprint(product_bp)
+app.register_blueprint(user_bp)
 app.register_blueprint(api_bp)
 
 @app.errorhandler(400)
@@ -35,7 +37,3 @@ def server_error(error):
 @app.errorhandler(500)
 def server_error(error):
     return make_response({"detail": "Server Error", "error_code": 500}), 500
-
-@app.cli.command("create-user")
-def create_user():
-    print("OLHA UM MACACO")
