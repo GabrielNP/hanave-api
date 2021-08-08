@@ -1,9 +1,9 @@
 import json
 import os
 
-# from flask import Flask
 import pandas as pd
 import requests
+from cpf_generator import CPF
 from sqlalchemy import create_engine
 from sqlalchemy.orm import query
 
@@ -56,6 +56,7 @@ def seed_users():
         user['first_name'] = r['name']['firstname']
         user['last_name'] = r['name']['lastname']
         user['address'] = json.dumps(user['address'])
+        user['document_number'] = CPF.generate()
         del user['name']
         del user['__v']
         users.append(user)
@@ -87,7 +88,6 @@ def seed_carts():
     df = pd.DataFrame(req)
 
     insert_data(df, 'carts')
-
 
 @app.cli.command("seed-tables")
 def seed_tables():

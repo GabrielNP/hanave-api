@@ -1,4 +1,4 @@
-from flask import jsonify, make_response
+from flask import jsonify, request, make_response
 from flask.blueprints import Blueprint
 
 from app.models import User
@@ -7,10 +7,13 @@ from app.models import User
 user_bp = Blueprint('user_bp', __name__, url_prefix='/users')
 
 @user_bp.route('/', methods=['GET'])
-def get_all():
+def get_by_document_number():
     try:
-        users = User.query.all()
-        return jsonify([i.serialize for i in users])
+        document_number = request.args.get('document_number')
+        user = User.query.filter_by(document_number=document_number).first()
+        if user:
+            return user.as_dict()
+        return make_response({}), 200
     except Exception as e:
         return make_response({'error': e}), 400
 

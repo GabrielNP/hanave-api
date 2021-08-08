@@ -37,6 +37,7 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
     phone = db.Column(db.String, nullable=True)
     address = db.Column(JSONB, nullable=True)
+    document_number = db.Column(db.Integer, nullable=False)
 
     __tablename__ = 'users'
 
@@ -54,6 +55,7 @@ class User(db.Model):
             'password': self.password,
             'phone': self.phone,
             'address': self.address,
+            'document_number': self.document_number,
         }
 
 class Cart(db.Model):
