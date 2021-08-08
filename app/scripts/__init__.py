@@ -5,7 +5,6 @@ import pandas as pd
 import requests
 from cpf_generator import CPF
 from sqlalchemy import create_engine
-from sqlalchemy.orm import query
 
 from app import app
 from app.models import Cart, Product, User
@@ -91,8 +90,6 @@ def seed_carts():
 
 @app.cli.command("seed-tables")
 def seed_tables():
-    # TODO: run migrate before
-
     app.logger.info("Truncating tables")
     db.session.query(Cart).delete()
     db.session.query(User).delete()
@@ -102,3 +99,10 @@ def seed_tables():
     seed_products()
     seed_users()
     seed_carts()
+
+
+@app.cli.command("create-tables")
+def create_tables():
+    with SQL_ENGINE.connect() as conn:
+        file = open("./migrations/initial.sql", 'r').read()
+        conn.execute(file)

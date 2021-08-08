@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Este repositório é a conclusão do trabalho desenvolvido durante o hackathon digital promovido pela [HANAVE](https://hanave.com.br/).
+Este repositório é a conclusão da API desenvolvida durante o hackathon digital promovido pela [HANAVE](https://hanave.com.br/).
 
 Desenvolvemos um chatbot de e-commerce para pós-vendas com a plataforma ALTU e nossa própria base de dados.
 
@@ -13,7 +13,6 @@ Integrantes:
 * Angélica
 * Eduardo
 * Gabriel
-* Nicole
 
 ### Desafio
 
@@ -29,7 +28,7 @@ Alguns requisitos mínimos devem estar presentes no assistente:
 * NPS;
 * FAQ (NLU)
 
-## Como executar
+## A API
 
 Descrição dos requisitos necessários para executar em um sistema operacional Linux. 
 
@@ -48,3 +47,7 @@ S.O. utilizado: Kubuntu
     sudo apt-get install python3.8-venv -y
     sudo apt-get install python3-pip
     ```
+
+ ### Como executar
+ Após instalar as dependências necessárias, execute os passos a seguir:
+ 
