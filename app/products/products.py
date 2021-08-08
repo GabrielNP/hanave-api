@@ -1,5 +1,3 @@
-import os
-
 from flask import make_response, request, jsonify
 from flask.blueprints import Blueprint
 

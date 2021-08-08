@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import query
 
 from app import app
-from app.models import Product, User
+from app.models import Cart, Product, User
 from app.utils.db import db
 
 SQL_ENGINE = create_engine(os.getenv('DATABASE_URL'), client_encoding='utf8', implicit_returning=True)
@@ -34,10 +34,6 @@ def seed_products():
     app.logger.info("Seed Products")
     app.logger.info("")
 
-    db.session.query(Product).delete()
-    app.logger.info("Truncating table")
-    db.session.commit()
-
     req = request_data_from_external_api('products')
 
     app.logger.info("Building dataframe and cleaning data")
@@ -49,11 +45,7 @@ def seed_products():
 def seed_users():
     app.logger.info("--------------")
     app.logger.info("Seed Users")
-    app.logger.info("")
-
-    db.session.query(User).delete()
-    app.logger.info("Truncating table")
-    db.session.commit()
+    app.logger.info("")    
 
     req = request_data_from_external_api('users')
 
@@ -72,12 +64,41 @@ def seed_users():
 
     insert_data(df, 'users')
 
-def seed_categories():
-    pass
+def seed_carts():
+    app.logger.info("--------------")
+    app.logger.info("Seed Carts")
+    app.logger.info("")
+    
+    req = request_data_from_external_api('carts')
+
+    for r in req:
+        r['created_at'] = r['date']
+        r['user_id'] = r['userId']
+        r['products'] = json.dumps(r['products'])
+        del r['userId']
+        del r['__v']
+        del r['date']
+    
+    # normalize data from external api
+    req[-1]['id'] = 7
+    req[1]['user_id'] = 7
+    req[4]['user_id'] = 5
+
+    df = pd.DataFrame(req)
+
+    insert_data(df, 'carts')
 
 
 @app.cli.command("seed-tables")
 def seed_tables():
+    # TODO: run migrate before
+
+    app.logger.info("Truncating tables")
+    db.session.query(Cart).delete()
+    db.session.query(User).delete()
+    db.session.query(Product).delete()
+    db.session.commit()
+
     seed_products()
-    seed_categories()
     seed_users()
+    seed_carts()

@@ -6,6 +6,7 @@ from flask import Flask
 from flask.helpers import make_response
 
 from app.api.api import api_bp
+from app.carts.carts import cart_bp
 from app.products.products import product_bp
 from app.users.users import user_bp
 from app.utils.db import db
@@ -18,6 +19,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.logger.setLevel(logging.INFO)
 db.init_app(app)
 
+app.register_blueprint(cart_bp)
 app.register_blueprint(product_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(api_bp)
