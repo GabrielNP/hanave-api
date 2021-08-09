@@ -13,6 +13,7 @@ Integrantes:
 * Angélica
 * Eduardo
 * Gabriel
+* Lucas
 
 ### Desafio
 
@@ -29,7 +30,6 @@ Alguns requisitos mínimos devem estar presentes no assistente:
 * FAQ (NLU)
 
 ## A API
-
 Descrição dos requisitos necessários para executar em um sistema operacional Linux. 
 
 S.O. utilizado: Kubuntu
@@ -48,6 +48,37 @@ S.O. utilizado: Kubuntu
     sudo apt-get install python3-pip
     ```
 
- ### Como executar
- Após instalar as dependências necessárias, execute os passos a seguir:
- 
+### Configurar banco
+1. Criei ou tenha uma conexão com banco de dados
+
+    \* Banco utilizado: PostgreSQL
+
+2. Adicione o schema hanave
+
+### Configurar ambiente
+1. Crie o arquivo `.env` a partir do `.env.example` e preencha com as informações do seu banco de dados
+2. Execute:
+    
+
+    ```bash
+    # cria as tabelas no schema hanave
+    make runcommand create-tables
+    ```
+
+    ```bash
+    # popula as tabelas criadas
+    make runcommand seed-tables
+    ```
+
+    ```bash
+    # instala bibliotecas python necessárias
+    make setup
+    ```
+
+ ### Como rodar
+Após instalar as dependências necessárias e realizar as configurações inciais, execute:
+
+```bash
+# serve a aplicação Flask na porta :5000
+make run
+```
