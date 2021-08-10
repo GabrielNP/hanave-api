@@ -28,7 +28,7 @@ class Product(db.Model):
             'price': self.price,
             'description': self.description,
             'category': self.category,
-            'image    ': self.image,
+            'image': self.image,
         }
 
 class User(db.Model):
@@ -89,6 +89,11 @@ class Purchase(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     size = db.Column(db.String, nullable=False)
     color = db.Column(db.String, nullable=False)
+    status = db.Column(db.String, nullable=False, default='pending_payment')
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
+    canceled_at = db.Column(db.DateTime, nullable=True)
+    reason = db.Column(db.String, nullable=True)
 
     __tablename__ = 'purchases'
 
@@ -103,4 +108,9 @@ class Purchase(db.Model):
             'product_id': self.product_id,
             'size': self.size,
             'color': self.color,
+            'status': self.status,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+            'canceled_at': self.canceled_at,
+            'reason': self.reason,
         }

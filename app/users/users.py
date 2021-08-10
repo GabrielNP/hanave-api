@@ -33,7 +33,7 @@ def retrieve_by_id(user_id):
 @user_bp.route('/<user_id>', methods=['PATCH'])
 def update(user_id):
     try:
-        data =json.loads(request.data)
+        data = json.loads(request.data)
         user = User.query.filter_by(id=user_id).first()
 
         if 'first_name' in data:
