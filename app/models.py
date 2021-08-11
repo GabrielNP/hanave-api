@@ -114,3 +114,29 @@ class Purchase(db.Model):
             'canceled_at': self.canceled_at,
             'reason': self.reason,
         }
+
+class Looks(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    shirt_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    jacket_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=True)
+    shoe_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    pant_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String, nullable=True)
+
+    __tablename__ = 'looks'
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+    
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'shirt_id': self.shirt_id,
+            'jacket_id': self.jacket_id,
+            'shoe_id': self.shoe_id,
+            'pant_id': self.pant_id,
+            'description': self.description,
+            'image': self.image,
+        }
