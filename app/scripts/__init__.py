@@ -7,7 +7,7 @@ from cpf_generator import CPF
 from sqlalchemy import create_engine
 
 from app import app
-from app.models import Cart, Product, Purchase, User
+from app.models import Cart, Product, Purchase, User, Look
 from app.utils.db import db
 
 SQL_ENGINE = create_engine(os.getenv('DATABASE_URL'), client_encoding='utf8', implicit_returning=True)
@@ -41,6 +41,7 @@ def seed_products():
     df = clean_data(df)
 
     insert_data(df, 'products')
+    update_products()
 
 def seed_users():
     app.logger.info("--------------")
@@ -95,11 +96,17 @@ def update_users():
         file = open("./migrations/update_users.sql", 'r').read()
         conn.execute(file) 
 
+def update_products():
+   with SQL_ENGINE.connect() as conn:
+        file = open("./migrations/update_products.sql", 'r').read()
+        conn.execute(file) 
+
 @app.cli.command("seed-tables")
 def seed_tables():
     app.logger.info("Truncating tables")
     db.session.query(Cart).delete()
     db.session.query(Purchase).delete()
+    db.session.query(Look).delete()
     db.session.query(User).delete()
     db.session.query(Product).delete()
     db.session.commit()
