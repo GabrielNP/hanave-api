@@ -120,7 +120,7 @@ class Purchase(db.Model):
             'delivery_forecast':self.delivery_forecast,
         }
 
-class Looks(db.Model):
+class Look (db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     shirt_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     jacket_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=True)

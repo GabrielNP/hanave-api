@@ -11,6 +11,7 @@ from app.products.products import product_bp
 from app.purchases.purchases import purchase_bp
 from app.users.users import user_bp
 from app.utils.db import db
+from app.looks.looks import look_bp
 
 load_dotenv()
 
@@ -25,6 +26,7 @@ app.register_blueprint(product_bp)
 app.register_blueprint(purchase_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(api_bp)
+app.register_blueprint(look_bp)
 
 @app.errorhandler(400)
 def bad_request(error):

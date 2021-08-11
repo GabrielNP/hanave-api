@@ -3,13 +3,12 @@ from flask.blueprints import Blueprint
 
 from app.models import Look
 
-
 look_bp = Blueprint('look_bp', __name__, url_prefix='/looks')
 
 @look_bp.route('/', methods=['GET'])
 def get_all():
     try:
-        looks = Look.query
+        looks = Look.query.all()
         return jsonify([i.serialize for i in looks])
     except Exception as e:
         return make_response({'error': e}), 400
