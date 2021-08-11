@@ -104,5 +104,5 @@ def seed_tables():
 @app.cli.command("create-tables")
 def create_tables():
     with SQL_ENGINE.connect() as conn:
-        file = open("./migrations/initial.sql", 'r').read()
+        file = open("./migrations/00_initial.sql", 'r').read()
         conn.execute(file)

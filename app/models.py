@@ -94,6 +94,9 @@ class Purchase(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
     canceled_at = db.Column(db.DateTime, nullable=True)
     reason = db.Column(db.String, nullable=True)
+    payment_type = db.Column(db.String, nullable=True)
+    delivery_forecast = db.Column(db.String, nullable=True)
+
 
     __tablename__ = 'purchases'
 
@@ -113,6 +116,8 @@ class Purchase(db.Model):
             'updated_at': self.updated_at,
             'canceled_at': self.canceled_at,
             'reason': self.reason,
+            'payment_type':self.payment_type,
+            'delivery_forecast':self.delivery_forecast,
         }
 
 class Looks(db.Model):

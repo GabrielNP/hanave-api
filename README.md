@@ -62,12 +62,12 @@ S.O. utilizado: Kubuntu
 
     ```bash
     # cria as tabelas no schema hanave
-    make runcommand create-tables
+    make runcommand command=create-tables
     ```
 
     ```bash
     # popula as tabelas criadas
-    make runcommand seed-tables
+    make runcommand command=seed-tables
     ```
 
     ```bash
