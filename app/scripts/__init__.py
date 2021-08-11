@@ -7,7 +7,7 @@ from cpf_generator import CPF
 from sqlalchemy import create_engine
 
 from app import app
-from app.models import Cart, Product, User
+from app.models import Cart, Product, Purchase, User
 from app.utils.db import db
 
 SQL_ENGINE = create_engine(os.getenv('DATABASE_URL'), client_encoding='utf8', implicit_returning=True)
@@ -63,6 +63,7 @@ def seed_users():
     df = pd.DataFrame(users)
 
     insert_data(df, 'users')
+    update_users()
 
 def seed_carts():
     app.logger.info("--------------")
@@ -88,10 +89,16 @@ def seed_carts():
 
     insert_data(df, 'carts')
 
+def update_users():
+   with SQL_ENGINE.connect() as conn:
+        file = open("./migrations/update_users.sql", 'r').read()
+        conn.execute(file) 
+
 @app.cli.command("seed-tables")
 def seed_tables():
     app.logger.info("Truncating tables")
     db.session.query(Cart).delete()
+    db.session.query(Purchase).delete()
     db.session.query(User).delete()
     db.session.query(Product).delete()
     db.session.commit()
@@ -105,4 +112,10 @@ def seed_tables():
 def create_tables():
     with SQL_ENGINE.connect() as conn:
         file = open("./migrations/00_initial.sql", 'r').read()
+        conn.execute(file)
+
+        file = open("./migrations/20210810213500_purchase.sql", 'r').read()
+        conn.execute(file)
+
+        file = open("./migrations/20210810220000_looks.sql", 'r').read()
         conn.execute(file)
