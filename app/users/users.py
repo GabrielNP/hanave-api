@@ -13,7 +13,18 @@ user_bp = Blueprint('user_bp', __name__, url_prefix='/users')
 def get_by_document_number():
     try:
         document_number = request.args.get('document_number')
-        user = User.query.filter_by(document_number=document_number).first()
+        phone = request.args.get('phone')
+        
+        user = User.query
+
+        if document_number:
+            user = user.filter_by(document_number=document_number)
+        
+        if phone:
+            user = user.filter_by(phone=phone)
+        
+        user = user.first()
+            
         if user:
             return user.as_dict()
         return make_response({}), 200
