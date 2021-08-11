@@ -37,6 +37,7 @@ def seed_products():
 
     app.logger.info("Building dataframe and cleaning data")
     df = pd.DataFrame(req)
+    df = df[df['category'] != 'electronics']
     df = clean_data(df)
 
     insert_data(df, 'products')
