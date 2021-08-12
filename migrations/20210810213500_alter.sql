@@ -3,7 +3,7 @@ ALTER TABLE public.purchases ADD color varchar NOT NULL;
 ALTER TABLE public.products ADD size_available _text NOT NULL DEFAULT '{S, M, B}';
 ALTER TABLE public.products ADD color_available _text NOT NULL DEFAULT '{"black", "red"}';
 
-ALTER TABLE public.purchases ADD status varchar NOT NULL DEFAULT 'pagamento pendente';
+ALTER TABLE public.purchases ADD status varchar NOT NULL DEFAULT 'pending_payment';
 ALTER TABLE public.purchases ADD created_at timestamp NOT NULL DEFAULT now();
 ALTER TABLE public.purchases ADD updated_at timestamptz NOT NULL DEFAULT now();
 ALTER TABLE public.purchases ADD canceled_at timestamptz NULL;
