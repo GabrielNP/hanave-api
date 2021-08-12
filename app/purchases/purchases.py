@@ -61,6 +61,9 @@ def update(purchase_id):
     try:
         data = json.loads(request.data)
         purchase = Purchase.query.filter_by(purchase_id=purchase_id).first()
+        if not purchase:
+            return make_response({'error': 'result not found'}), 400
+
         purchase.updated_at = datetime.now()
 
         if 'status' in data:
@@ -72,4 +75,4 @@ def update(purchase_id):
         db.session.commit()
         return make_response(purchase.serialize), 200
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400

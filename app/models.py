@@ -95,7 +95,7 @@ class Purchase(db.Model):
     canceled_at = db.Column(db.DateTime, nullable=True)
     reason = db.Column(db.String, nullable=True)
     payment_type = db.Column(db.String, nullable=True)
-    delivery_forecast = db.Column(db.String, nullable=True)
+    delivery_forecast = db.Column(db.DateTime, nullable=True)
     purchase_code = db.Column(db.Integer, nullable=False)
 
 
