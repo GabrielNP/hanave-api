@@ -122,8 +122,5 @@ def create_tables():
         file = open("./migrations/00_initial.sql", 'r').read()
         conn.execute(file)
 
-        file = open("./migrations/20210810213500_purchase.sql", 'r').read()
-        conn.execute(file)
-
-        file = open("./migrations/20210810220000_looks.sql", 'r').read()
+        file = open("./migrations/20210810213500_alter.sql", 'r').read()
         conn.execute(file)

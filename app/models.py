@@ -96,6 +96,7 @@ class Purchase(db.Model):
     reason = db.Column(db.String, nullable=True)
     payment_type = db.Column(db.String, nullable=True)
     delivery_forecast = db.Column(db.String, nullable=True)
+    purchase_code = db.Column(db.Integer, nullable=False)
 
 
     __tablename__ = 'purchases'
@@ -118,6 +119,7 @@ class Purchase(db.Model):
             'reason': self.reason,
             'payment_type':self.payment_type,
             'delivery_forecast':self.delivery_forecast,
+            'purchase_code': self.purchase_code,
         }
 
 class Look (db.Model):

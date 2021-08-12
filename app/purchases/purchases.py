@@ -1,8 +1,12 @@
 import json
 from datetime import datetime
+from random import randint
+from time import time
+from uuid import uuid4
 
 from flask import make_response, request, jsonify
 from flask.blueprints import Blueprint
+from sqlalchemy import desc
 from unidecode import unidecode
 
 from app.models import Purchase
@@ -15,7 +19,7 @@ purchase_bp = Blueprint('purchase_bp', __name__, url_prefix='/purchases')
 @purchase_bp.route('user/<user_id>', methods=['GET'])
 def get_by_user(user_id):
     try:
-        purchases = Purchase.query.filter_by(user_id=user_id).all()
+        purchases = Purchase.query.filter_by(user_id=user_id).order_by(desc(Purchase.created_at)).all()
         if purchases:
             return jsonify([i.serialize for i in purchases])
         return make_response({}), 200
@@ -43,6 +47,8 @@ def create():
             size=data['size'],
             color=data['color'],
         )
+        purchase.purchase_id = uuid4().hex
+        purchase.purchase_code = str(time()).split('.')[0]
         db.session.add(purchase)
         db.session.commit()
         db.session.flush()

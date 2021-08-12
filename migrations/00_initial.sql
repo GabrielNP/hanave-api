@@ -68,14 +68,18 @@ CREATE TABLE public.purchases (
 	CONSTRAINT purchases_fk_1 FOREIGN KEY (product_id) REFERENCES public.products(id) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
-ALTER TABLE public.purchases ADD "size" varchar NOT NULL;
-ALTER TABLE public.purchases ADD color varchar NOT NULL;
-ALTER TABLE public.products ADD size_available _text NOT NULL DEFAULT '{S, M, B}';
-ALTER TABLE public.products ADD color_available _text NOT NULL DEFAULT '{"black", "red"}';
-
-ALTER TABLE public.purchases ADD status varchar NOT NULL DEFAULT 'payment_pending';
-ALTER TABLE public.purchases ADD created_at timestamp NOT NULL DEFAULT now();
-ALTER TABLE public.purchases ADD updated_at timestamptz NOT NULL DEFAULT now();
-ALTER TABLE public.purchases ADD canceled_at timestamptz NULL;
-ALTER TABLE public.purchases ADD reason text NULL;
+CREATE TABLE public.looks (
+    id serial NOT NULL,
+    shirt_id int4 NOT NULL,
+    jacket_id int4 NULL,
+    shoe_id int4 NOT NULL, 
+    pant_id int4 NOT NULL,
+    description varchar NOT NULL,
+    image varchar NULL,
+    CONSTRAINT looks_pk PRIMARY KEY (id),
+    CONSTRAINT looks_shirt FOREIGN KEY (shirt_id) REFERENCES public.products(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT looks_jacket FOREIGN KEY (jacket_id) REFERENCES public.products(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT looks_shoe FOREIGN KEY (shoe_id) REFERENCES public.products(id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT looks_pant FOREIGN KEY (pant_id) REFERENCES public.products(id) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
 

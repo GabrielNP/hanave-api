@@ -1,7 +1,7 @@
-PENDING_PAYMENT='pending_payment'
-PAID='paid',
-IN_PROGRESS='in_progress'
-TRANSPORTING='transporting'
-DELIVERED='delivered'
-CANCELED='canceled'
+PENDING_PAYMENT='pagamento pendente'
+PAID='pagamento confirmado',
+IN_PROGRESS='em andamento'
+TRANSPORTING='em transporte'
+DELIVERED='entregue'
+CANCELED='cancelado'
 

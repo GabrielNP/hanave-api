@@ -29,7 +29,7 @@ def get_by_document_number():
             return user.as_dict()
         return make_response({}), 200
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400
 
 @user_bp.route('/<user_id>', methods=['GET'])
 def retrieve_by_id(user_id):
