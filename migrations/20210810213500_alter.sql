@@ -12,3 +12,5 @@ ALTER TABLE public.purchases ADD reason text NULL;
 ALTER TABLE public.purchases ADD payment_type varchar NULL;
 ALTER TABLE public.purchases ADD delivery_forecast timestamptz NULL;
 ALTER TABLE public.purchases ADD purchase_code int8 NOT NULL;
+
+ALTER TABLE public.looks ADD category varchar NOT NULL;
