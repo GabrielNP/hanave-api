@@ -20,7 +20,6 @@ purchase_bp = Blueprint('purchase_bp', __name__, url_prefix='/purchases')
 def get_by_user(user_id):
     try:
         purchases = Purchase.query.filter_by(user_id=user_id).order_by(desc(Purchase.created_at)).all()
-        print([i.serialize for i in purchases])
         return jsonify([i.serialize for i in purchases])
     except Exception as e:
         return make_response({'error': str(e)}), 400
@@ -33,7 +32,7 @@ def retrieve_by_id(purchase_id):
             return purchase.as_dict()
         return make_response({}), 200
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400
 
 @purchase_bp.route('', methods=['POST'])
 def create():
@@ -45,6 +44,7 @@ def create():
             product_id=data['product_id'],
             size=data['size'],
             color=data['color'],
+            payment_type=data['payment_type'],
         )
         purchase.purchase_id = uuid4().hex
         purchase.purchase_code = str(time()).split('.')[0]
@@ -53,7 +53,7 @@ def create():
         db.session.flush()
         return make_response(purchase.serialize), 200
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400
 
 @purchase_bp.route('/<purchase_id>', methods=['PATCH'])
 def update(purchase_id):

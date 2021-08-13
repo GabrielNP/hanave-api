@@ -11,4 +11,4 @@ def retrieve_by_user(user_id):
         users = Cart.query.filter_by(user_id=user_id)
         return jsonify([i.serialize for i in users])
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400

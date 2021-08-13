@@ -11,7 +11,7 @@ def get_all():
         looks = Look.query.all()
         return jsonify([i.serialize for i in looks])
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400
 
 @look_bp.route('/<look_id>', methods=['GET'])
 def retrieve_by_id(look_id):
@@ -21,4 +21,4 @@ def retrieve_by_id(look_id):
             return looks.as_dict()
         return make_response({}), 200
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400

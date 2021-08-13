@@ -39,7 +39,7 @@ def retrieve_by_id(user_id):
             return user.as_dict()
         return make_response({}), 200
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400
 
 @user_bp.route('/<user_id>', methods=['PATCH'])
 def update(user_id):
@@ -62,7 +62,7 @@ def update(user_id):
         db.session.commit()
         return user.as_dict()
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400
 
 @user_bp.route('/', methods=['POST'])
 def create():

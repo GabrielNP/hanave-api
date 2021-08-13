@@ -15,7 +15,7 @@ def get_all():
             products = products.filter_by(category=category)
         return jsonify([i.serialize for i in products])
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400
 
 @product_bp.route('/<product_id>', methods=['GET'])
 def retrieve_by_id(product_id):
@@ -25,4 +25,4 @@ def retrieve_by_id(product_id):
             return products.as_dict()
         return make_response({}), 200
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400

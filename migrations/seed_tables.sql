@@ -20,7 +20,7 @@ INSERT INTO public.products (title,price,description,category,image,size_availab
     ('Camiseta',13.99,'Camiseta Feminina Rosa','Camiseta Feminina','https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg','{"S","M","B"}','{"pink"}');
 
 INSERT INTO public.users (email,username,first_name,last_name,"password",phone,address,document_number) VALUES
-    ('angel@email.com','angel','Angélica','Hanston','ewedon','11952405707','{"city": "San Antonio", "number": 6454, "street": "Hunters Creek Dr", "zipcode": "98234-1734", "geolocation": {"lat": "50.3467", "long": "-20.1310"}}','29948400062'),
+    ('angel@email.com','angel','Angelica','Hanston','ewedon','11952405707','{"city": "San Antonio", "number": 6454, "street": "Hunters Creek Dr", "zipcode": "98234-1734", "geolocation": {"lat": "50.3467", "long": "-20.1310"}}','29948400062'),
     ('derek@gmail.com','derek','derek','powell','jklg*_56','1-956-001-1945','{"city": "san Antonio", "number": 245, "street": "adams St", "zipcode": "80796-1234", "geolocation": {"lat": "40.3467", "long": "-40.1310"}}','22170625810'),
     ('david_r@gmail.com','david_r','david','russell','3478*#54','1-678-345-9856','{"city": "el paso", "number": 124, "street": "prospect st", "zipcode": "12346-0456", "geolocation": {"lat": "20.1677", "long": "-10.6789"}}','46911978181'),
     ('miriam@gmail.com','snyder','miriam','snyder','f238&@*$','1-123-943-0563','{"city": "fresno", "number": 1342, "street": "saddle st", "zipcode": "96378-0245", "geolocation": {"lat": "10.3456", "long": "20.6419"}}','86805609011'),
