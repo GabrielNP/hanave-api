@@ -21,7 +21,7 @@ WHERE
 UPDATE public.users SET
 	first_name = 'Eduardo',
 	last_name  = 'Lima',
-	email = 'lucas@email.com',
+	email = 'eduardo@email.com',
 	phone = '11998124315',
 	document_number  = '63824835088',
 	username  = 'eduardo'

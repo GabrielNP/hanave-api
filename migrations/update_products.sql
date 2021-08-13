@@ -2,7 +2,7 @@ UPDATE public.products
 	SET title='Bolsa Masculina',description='Mochila Masculina',price=30.5,category='Mochila Masculina',color_available='{"black"}'
 	WHERE id=1;
 UPDATE public.products
-	SET title='Camiseta Básica',description='Camiseta Básica Branca Com Mangas Pretas',price=21.5,category='Camiseta Masculina',color_available='{"black"}'
+	SET title='Camiseta Basica',description='Camiseta Basica Branca Com Mangas Pretas',price=21.5,category='Camiseta Masculina',color_available='{"black"}'
 	WHERE id=2;
 UPDATE public.products
 	SET title='Jaqueta Masculina',description='Jaqueta Masculina Bege',price=109.99,category='Jaqueta Masculina',color_available='{"black"}'
@@ -23,7 +23,7 @@ UPDATE public.products
 	SET title='Anel Ouro',description='Anel De Ouro Feminino',price=612.0,category='Anel Feminino',size_available='{"11","12","13","14"}'
 	WHERE id=8;
 UPDATE public.products
-	SET title='Sobretudo Inverno',description='Sobretudo Para o Inverno Lilás',price=120.0,category='Sobretudo Feminino',color_available='{"lilac"}'
+	SET title='Sobretudo Inverno',description='Sobretudo Para o Inverno Lilas',price=120.0,category='Sobretudo Feminino',color_available='{"lilac"}'
 	WHERE id=15;
 UPDATE public.products
 	SET title='Jaqueta Jeans Preto',description='Jaqueta Jeans Preto',price=45.0,category='Jaqueta Feminina Preta',color_available='{"black"}'
