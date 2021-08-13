@@ -20,11 +20,10 @@ purchase_bp = Blueprint('purchase_bp', __name__, url_prefix='/purchases')
 def get_by_user(user_id):
     try:
         purchases = Purchase.query.filter_by(user_id=user_id).order_by(desc(Purchase.created_at)).all()
-        if purchases:
-            return jsonify([i.serialize for i in purchases])
-        return make_response({}), 200
+        print([i.serialize for i in purchases])
+        return jsonify([i.serialize for i in purchases])
     except Exception as e:
-        return make_response({'error': e}), 400
+        return make_response({'error': str(e)}), 400
 
 @purchase_bp.route('/<purchase_id>', methods=['GET'])
 def retrieve_by_id(purchase_id):

@@ -90,8 +90,8 @@ class Purchase(db.Model):
     size = db.Column(db.String, nullable=False)
     color = db.Column(db.String, nullable=False)
     status = db.Column(db.String, nullable=False, default='pending_payment')
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
     canceled_at = db.Column(db.DateTime, nullable=True)
     reason = db.Column(db.String, nullable=True)
     payment_type = db.Column(db.String, nullable=True)
@@ -113,12 +113,12 @@ class Purchase(db.Model):
             'size': self.size,
             'color': self.color,
             'status': self.status,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at,
-            'canceled_at': self.canceled_at,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat(),
+            'canceled_at': self.canceled_at.isoformat() if self.canceled_at else None,
             'reason': self.reason,
             'payment_type':self.payment_type,
-            'delivery_forecast':self.delivery_forecast,
+            'delivery_forecast':self.delivery_forecast.isoformat() if self.delivery_forecast else None,
             'purchase_code': self.purchase_code,
         }
 

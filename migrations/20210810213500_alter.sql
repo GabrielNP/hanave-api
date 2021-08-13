@@ -9,7 +9,7 @@ ALTER TABLE public.purchases ADD updated_at timestamptz NOT NULL DEFAULT now();
 ALTER TABLE public.purchases ADD canceled_at timestamptz NULL;
 ALTER TABLE public.purchases ADD reason text NULL;
 
-ALTER TABLE public.purchases ADD payment_type varchar NULL;
+ALTER TABLE public.purchases ADD payment_type varchar NOT NULL;
 ALTER TABLE public.purchases ADD delivery_forecast timestamptz NULL;
 ALTER TABLE public.purchases ADD purchase_code int8 NOT NULL;
 
