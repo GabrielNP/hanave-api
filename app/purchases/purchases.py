@@ -73,7 +73,10 @@ def update(purchase_id):
             purchase.status = data['status']
         
         if 'address' in data:
-                purchase.address = data['address']
+            for k,v in data['address'].items():
+                if type(data['address'][k]) == str:
+                    data['address'][k] = unidecode(data['address'][k])
+            purchase.address = data['address']
 
         db.session.commit()
         return make_response(purchase.serialize), 200
