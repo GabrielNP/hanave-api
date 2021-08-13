@@ -82,3 +82,6 @@ Após instalar as dependências necessárias e realizar as configurações incia
 # serve a aplicação Flask na porta :5000
 make run
 ```
+
+### Referências 
+[Fake store API](https://fakestoreapi.com/)
