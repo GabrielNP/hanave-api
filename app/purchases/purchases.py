@@ -45,6 +45,7 @@ def create():
             size=data['size'],
             color=data['color'],
             payment_type=data['payment_type'],
+            address=data['address'],
         )
         purchase.purchase_id = uuid4().hex
         purchase.purchase_code = str(time()).split('.')[0]
@@ -70,6 +71,9 @@ def update(purchase_id):
                 purchase.canceled_at = datetime.now()
                 purchase.reason = unidecode(data['reason']) if 'reason' in data else None
             purchase.status = data['status']
+        
+        if 'address' in data:
+                purchase.address = data['address']
 
         db.session.commit()
         return make_response(purchase.serialize), 200

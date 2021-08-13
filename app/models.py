@@ -97,6 +97,7 @@ class Purchase(db.Model):
     payment_type = db.Column(db.String, nullable=True)
     delivery_forecast = db.Column(db.DateTime, nullable=True)
     purchase_code = db.Column(db.Integer, nullable=False)
+    address = db.Column(JSONB, nullable=True)
 
 
     __tablename__ = 'purchases'
@@ -120,6 +121,7 @@ class Purchase(db.Model):
             'payment_type':self.payment_type,
             'delivery_forecast':self.delivery_forecast.isoformat() if self.delivery_forecast else None,
             'purchase_code': self.purchase_code,
+            'address': self.address,
         }
 
 class Look (db.Model):
