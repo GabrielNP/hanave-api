@@ -111,9 +111,12 @@ def seed_tables():
     db.session.query(Product).delete()
     db.session.commit()
 
-    seed_products()
-    seed_users()
-    seed_carts()
+    with SQL_ENGINE.connect() as conn:
+        file = open("./migrations/seed_tables.sql", 'r').read()
+        conn.execute(file)
+    # seed_products()
+    # seed_users()
+    # seed_carts()
 
 
 @app.cli.command("create-tables")
