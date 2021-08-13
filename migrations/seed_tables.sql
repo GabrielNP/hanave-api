@@ -29,7 +29,8 @@ INSERT INTO public.users (email,username,first_name,last_name,"password",phone,a
     ('jimmie@gmail.com','jimmie_k','jimmie','klein','klein*#%*','1-104-001-4567','{"city": "fort wayne", "number": 526, "street": "oak lawn ave", "zipcode": "10256-4532", "geolocation": {"lat": "30.24788", "long": "-20.545419"}}','72910559890'),
     ('gabriel@email.com','gabriel','Gabriel','Novaes','m38rmF$','11972218872','{"city": "kilcoole", "number": 7682, "street": "new road", "zipcode": "12926-3874", "geolocation": {"lat": "-37.3159", "long": "81.1496"}}','49351242021'),
     ('lucas@email.com','lucas','Lucas','Victor','83r5^_','11959972119','{"city": "kilcoole", "number": 7267, "street": "Lovers Ln", "zipcode": "12926-3874", "geolocation": {"lat": "-37.3159", "long": "81.1496"}}','03674327066'),
-    ('lucas@email.com','eduardo','Eduardo','Lima','kev02937@','11998124315','{"city": "Cullman", "number": 86, "street": "Frances Ct", "zipcode": "29567-1452", "geolocation": {"lat": "40.3467", "long": "-30.1310"}}','63824835088');
+    ('lucas@email.com','eduardo','Eduardo','Lima','kev02937@','11998124315','{"city": "Cullman", "number": 86, "street": "Frances Ct", "zipcode": "29567-1452", "geolocation": {"lat": "40.3467", "long": "-30.1310"}}','63824835088'),
+    ('isabella.ggomes@email.com','Isa','Isabella','Gomes','83r5^_','11954670489','{"city": "kilcoole", "number": 65, "street": "Radiator Springs", "zipcode": "12099-4655", "geolocation": {"lat": "-37.3159", "long": "81.1496"}}','19061060028');
 
 INSERT INTO public.carts (user_id,created_at,updated_at,products) VALUES
 	 (1,'2020-03-01 21:00:02-03','2021-08-11 20:37:54.930839-03','[{"quantity": 4, "productId": 1}, {"quantity": 1, "productId": 2}, {"quantity": 6, "productId": 3}]'),
