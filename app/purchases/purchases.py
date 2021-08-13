@@ -1,11 +1,13 @@
+import os
 import json
-from datetime import datetime
+from datetime import datetime, date
 from random import randint
 from time import time
 from uuid import uuid4
 
 from flask import make_response, request, jsonify
 from flask.blueprints import Blueprint
+import pytz
 from sqlalchemy import desc
 from unidecode import unidecode
 
@@ -48,7 +50,7 @@ def create():
             address=data['address'],
         )
         purchase.purchase_id = uuid4().hex
-        purchase.purchase_code = str(time()).split('.')[0]
+        purchase.purchase_code = str(randint(1000,9999)) + str(time()).split('.')[0]
         db.session.add(purchase)
         db.session.commit()
         db.session.flush()
@@ -64,11 +66,16 @@ def update(purchase_id):
         if not purchase:
             return make_response({'error': 'result not found'}), 400
 
-        purchase.updated_at = datetime.now()
+        purchase.updated_at = datetime.utcnow()
 
         if 'status' in data:
             if data['status'] == STATUS.CANCELED:
-                purchase.canceled_at = datetime.now()
+                now = datetime.now()
+                result = now - purchase.created_at.replace(tzinfo=None)
+
+                if result.days >= int(os.getenv('EXPIRES_IN')):
+                    return make_response({'error': f'you cannot cancel purchase because has passed {os.getenv("EXPIRES_IN")} days'}), 406
+                purchase.canceled_at = now
                 purchase.reason = unidecode(data['reason']) if 'reason' in data else None
             purchase.status = data['status']
         
