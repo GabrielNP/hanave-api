@@ -40,7 +40,7 @@ def get_by_user(user_id):
                 "zipcode": "98234-1734"
                 },
                 "canceled_at": None,
-                "color": "red",
+                "color": "vermelho",
                 "created_at": "2021-08-13T22:50:22+01:00",
                 "delivery_forecast": "2021-09-13T23:05:19.173205+01:00",
                 "payment_type": "card",
