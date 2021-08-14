@@ -7,7 +7,7 @@ setup: requirements.txt
 include .env
 export
 run: .venv
-	. .venv/bin/activate; FLASK_APP=app FLASK_ENV=development flask run
+	. .venv/bin/activate; FLASK_APP=main FLASK_ENV=development flask run
 
 add_dep: .venv
 	. .venv/bin/activate; pip install $(dep) && pip freeze | grep -v "pkg-resources" > requirements.txt
